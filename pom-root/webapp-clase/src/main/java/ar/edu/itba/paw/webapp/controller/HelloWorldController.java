@@ -50,4 +50,23 @@ public class HelloWorldController {
 		
 		return mav;
 	}
+	
+	@RequestMapping("/admin/user")
+	public ModelAndView helloWorldAdmin(@RequestParam(name = "userId", required = true) final int userId) {
+		final ModelAndView mav = new ModelAndView("userDetails");
+		
+		mav.addObject("user", us.findById(userId));
+		
+		return mav;
+	}
+	
+	@RequestMapping("/login")
+	public ModelAndView login() {
+		return new ModelAndView("login");
+	}
+	
+	@RequestMapping("/403")
+	public ModelAndView forbidden() {
+		return new ModelAndView("403");
+	}
 }
