@@ -13,6 +13,19 @@
   <packaging>war</packaging>
   <name>webapp Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <build>
+    <finalName>webapp-clase</finalName>
+    <plugins>
+        <plugin>
+          	<groupId>org.apache.maven.plugins</groupId>
+          	<artifactId>maven-war-plugin</artifactId>
+          	<version>${maven-war-plugin.version}</version>
+          	<configuration>
+          		<packagingExcludes>**/logback-test.xml</packagingExcludes>
+          	</configuration>
+        </plugin>
+    </plugins>
+  </build>
   <dependencies>
     <dependency>
         <groupId>ar.edu.itba.paw</groupId>
@@ -90,7 +103,4 @@
       <artifactId>junit</artifactId>
     </dependency>
   </dependencies>
-  <build>
-    <finalName>webapp-clase</finalName>
-  </build>
 </project>

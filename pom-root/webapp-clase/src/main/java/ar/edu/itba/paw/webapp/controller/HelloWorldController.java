@@ -3,6 +3,8 @@ package ar.edu.itba.paw.webapp.controller;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -19,6 +21,8 @@ import ar.edu.itba.paw.webapp.form.UserForm;
 @Controller
 public class HelloWorldController {
 	
+	private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldController.class);
+	
 	@Autowired
 	private UserService us;
 	
@@ -29,8 +33,10 @@ public class HelloWorldController {
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ModelAndView create(@ModelAttribute("registerForm") @Valid final UserForm form, final BindingResult errors) {
-		if (errors.hasErrors())
+		if (errors.hasErrors()) {
+			LOGGER.warn("Request has error {}");
 			return index(form);
+		}
 		
 		final User user = us.create(form.getUsername(), form.getPassword());
 		return new ModelAndView("redirect:/user?userId=" + user.getId());

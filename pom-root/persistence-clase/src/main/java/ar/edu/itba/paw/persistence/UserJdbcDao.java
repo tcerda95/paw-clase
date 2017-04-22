@@ -48,7 +48,7 @@ public class UserJdbcDao implements UserDao {
 	}
 
 	public User create(String username, String password) {
-		final Map<String, Object> args = new HashMap<String, Object>();
+		final Map<String, Object> args = new HashMap<>();
 		args.put("username", username);
 		args.put("password", password);
 		

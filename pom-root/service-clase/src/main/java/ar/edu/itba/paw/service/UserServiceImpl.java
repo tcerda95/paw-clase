@@ -2,6 +2,7 @@ package ar.edu.itba.paw.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.itba.paw.User;
 import ar.edu.itba.paw.persistence.UserDao;
@@ -17,6 +18,7 @@ public class UserServiceImpl implements UserService {
 		return userDao.findById(id);
 	}
 
+	@Transactional
 	public User create(String username, String password) {
 		return userDao.create(username, password);
 	}
